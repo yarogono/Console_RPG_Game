@@ -1,4 +1,5 @@
 ﻿using Client.ConsoleUI;
+using Client.Controller;
 using Client.Models;
 
 namespace Client.Managers
@@ -45,15 +46,23 @@ namespace Client.Managers
         {
             _inventory.PlayerItemEquip(player);
 
-            int inputNum  = CheckValidIntroInputNum(0, 1);
+            int inputNum  = CheckValidIntroInputNum(0, player.Inventory.Items.Count + 1);
 
             if (inputNum == 0)
                 Managers.GameManager.IntroScene(player);
             
             if (inputNum >= 1)
             {
-                // TODO : 아이템 장착 처리 및 해제 처리
-                // InventoryController에서 로직 수행 예정
+                int itemNum = inputNum - 1;
+
+                Item item = player.Inventory.Items[itemNum];
+                if (player.Inventory.EquipItem.Contains(item))
+                    InventoryController.UnEquipItem(player, item);
+                else
+                    InventoryController.EquipItem(player, item);
+                
+
+                Managers.ConsoleUIManager.ShowInventory(player);
             }
         }
 

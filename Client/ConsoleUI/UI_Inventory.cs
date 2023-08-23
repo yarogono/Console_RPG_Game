@@ -23,6 +23,7 @@ namespace Client.ConsoleUI
             _sb.Append("\r\n" +
                            "1. 장착 관리\r\n" +
                            "0. 나가기\r\n" +
+                           "\r\n" +
                            "원하시는 행동을 입력해주세요.\r\n" +
                            ">> ");
 
